@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'EventMain.dart';
+import 'QuestMain.dart';
+import 'ProfileMain.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,9 +11,15 @@ class MyApp extends StatefulWidget {
   MyAppState createState() => MyAppState();
 }
 
-class MyAppState extends State {
+class MyAppState extends State<MyApp> {
   int i = 0;
-  var pages = [new TimeLine(), new TimeLine(), new TimeLine(), new TimeLine()];
+  var pages = [
+    new TimeLine(),
+    new EventMain(),
+    new TimeLine(),
+    new QuestMain(),
+    new ProfileMain()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +35,11 @@ class MyAppState extends State {
             new BottomNavigationBarItem(
                 icon: new Icon(Icons.whatshot), title: new Text('Event')),
             new BottomNavigationBarItem(
+                icon: new Icon(Icons.add_a_photo), title: new Text('Add')),
+            new BottomNavigationBarItem(
                 icon: new Icon(Icons.local_activity), title: new Text('Quest')),
             new BottomNavigationBarItem(
-                icon: new Icon(Icons.person), title: new Text('Profile'))
+                icon: new Icon(Icons.person), title: new Text('Profile')),
           ],
           currentIndex: i,
           type: BottomNavigationBarType.fixed,
@@ -46,11 +57,16 @@ class MyAppState extends State {
 class TimeLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return
+// StreamBuilder(
+//   stream: FireStore.instance,
+// )
+
+        new Scaffold(
       appBar: AppBar(
         title: new Text('Timeline'),
       ),
-      body: ListView.builder(
+      body: new ListView.builder(
         itemCount: 5,
         itemBuilder: (context, i) {
           return PostMainRow();
@@ -64,93 +80,95 @@ class PostMainRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 16.0, right: 16.0),
-        child: new Column(
-          children: <Widget>[
-            new Container(
-              padding: EdgeInsets.only(top: 8.0),
-              child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        padding: EdgeInsets.all(8.0),
+        child: new Card(
+          child: new Column(
+            children: <Widget>[
+              new Container(
+                padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                child: new Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Container(
+                      child: new CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                            'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2Fdff4b381-b368-430b-87a4-0c72cdca6627?alt=media&token=0bf171dd-57ed-4a0e-ac33-d22f04f38afa'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
+                    new Expanded(
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Container(
+                              padding: EdgeInsets.only(
+                                  left: 8.0, right: 8.0, top: 8.0),
+                              child: new Text('Baba black',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1)),
+                          new Container(
+                              padding: EdgeInsets.only(
+                                  left: 8.0, right: 8.0, top: 8.0),
+                              child: new Text(
+                                '23 Jan 19',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: new TextStyle(
+                                    fontSize: 12.0, color: Colors.grey),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              new Container(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: new FlatButton(
+                    padding: EdgeInsets.all(0.0),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new ImageFull()));
+                    },
+                    child: new Image.network(
+                        'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2F04c1de9f-808c-41c9-9cc8-deaa6a4603f2?alt=media&token=4fafbfe8-91f8-43b7-9787-f90c1c585a49'),
+                  )),
+              new Column(
                 children: <Widget>[
                   new Container(
-                    child: new CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                          'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2Fdff4b381-b368-430b-87a4-0c72cdca6627?alt=media&token=0bf171dd-57ed-4a0e-ac33-d22f04f38afa'),
-                      backgroundColor: Colors.transparent,
-                    ),
-                  ),
-                  new Expanded(
-                    child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Container(
-                            padding: EdgeInsets.only(
-                                left: 8.0, right: 8.0, top: 8.0),
-                            child: new Text('Baba black',
-                                overflow: TextOverflow.ellipsis, maxLines: 1)),
-                        new Container(
-                            padding: EdgeInsets.only(
-                                left: 8.0, right: 8.0, top: 8.0),
-                            child: new Text(
-                              '23 Jan 19',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: new TextStyle(
-                                  fontSize: 12.0, color: Colors.grey),
-                            ))
-                      ],
-                    ),
-                  ),
+                      padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                      child: new Center(
+                        child: new Text(
+                          'Street photo is never boring, night life are so true',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ))
                 ],
               ),
-            ),
-            new Container(
-                padding: EdgeInsets.only(top: 8.0),
-                child: new FlatButton(
-                  padding: EdgeInsets.all(0.0),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new ImageFull()));
-                  },
-                  child: new Image.network(
-                      'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2Fdff4b381-b368-430b-87a4-0c72cdca6627?alt=media&token=0bf171dd-57ed-4a0e-ac33-d22f04f38afa'),
-                )),
-            new Column(
-              children: <Widget>[
-                new Container(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: new Center(
-                      child: new Text(
-                        'Street photo is never boring, night life are so true',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ))
-              ],
-            ),
-            ActionWidget(),
-            new Divider()
-          ],
+              PostActionWidget(),
+            ],
+          ),
         ));
   }
 }
 
-class ActionWidget extends StatefulWidget {
+class PostActionWidget extends StatefulWidget {
   @override
-  ActionWidgetState createState() => ActionWidgetState();
+  PostActionWidgetState createState() => PostActionWidgetState();
 }
 
-class ActionWidgetState extends State<ActionWidget> {
+class PostActionWidgetState extends State<PostActionWidget> {
   bool isLiked = false;
   int likeCount = 0;
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.only(top: 8.0),
+      padding: EdgeInsets.only(right: 16.0),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -178,16 +196,17 @@ class ActionWidgetState extends State<ActionWidget> {
             icon: new Icon(Icons.details, color: Colors.white),
           ),
           new Spacer(),
-          new FlatButton(
-            padding: EdgeInsets.all(0.0),
-            child: new Text('$likeCount like,'),
-            onPressed: () {
+          new GestureDetector(
+            
+            child: new Text('$likeCount like'),
+            onTap: () {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new CommentMain()));
             },
           ),
+          new Container(width: 8.0,),
           new FlatButton(
             padding: EdgeInsets.all(0.0),
             onPressed: () {
@@ -229,7 +248,7 @@ class ImageFull extends StatelessWidget {
               tag: 'imageHero',
               child: PhotoView(
                   imageProvider: NetworkImage(
-                      'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2Fdff4b381-b368-430b-87a4-0c72cdca6627?alt=media&token=0bf171dd-57ed-4a0e-ac33-d22f04f38afa'))),
+                      'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2F04c1de9f-808c-41c9-9cc8-deaa6a4603f2?alt=media&token=4fafbfe8-91f8-43b7-9787-f90c1c585a49'))),
         )));
   }
 }
