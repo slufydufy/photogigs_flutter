@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
-import 'EventMain.dart';
 import 'QuestMain.dart';
 import 'ProfileMain.dart';
+import 'PhotoGigsMain.dart';
+import 'TalentMain.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,8 +15,8 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   int i = 0;
   var pages = [
-    new TimeLine(),
-    new EventMain(),
+    new PhotoGigsMain(),
+    new TalentMain(),
     new TimeLine(),
     new QuestMain(),
     new ProfileMain()
@@ -29,26 +30,25 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         body: pages[i],
         bottomNavigationBar: new BottomNavigationBar(
-          items: [
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.home), title: new Text('Home')),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.whatshot), title: new Text('Event')),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.add_a_photo), title: new Text('Add')),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.local_activity), title: new Text('Quest')),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.person), title: new Text('Profile')),
-          ],
-          currentIndex: i,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            setState(() {
-              i = index;
-            });
-          },
-        ),
+            items: [
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.present_to_all), title: new Text('PhotoGigs')),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.whatshot), title: new Text('Talent')),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.timeline), title: new Text('Timeline')),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.style), title: new Text('Quest')),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.person), title: new Text('Profile'))
+            ],
+            currentIndex: i,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              setState(() {
+                i = index;
+              });
+            }),
       ),
     );
   }
@@ -197,7 +197,6 @@ class PostActionWidgetState extends State<PostActionWidget> {
           ),
           new Spacer(),
           new GestureDetector(
-            
             child: new Text('$likeCount like'),
             onTap: () {
               Navigator.push(
@@ -206,7 +205,9 @@ class PostActionWidgetState extends State<PostActionWidget> {
                       builder: (context) => new CommentMain()));
             },
           ),
-          new Container(width: 8.0,),
+          new Container(
+            width: 8.0,
+          ),
           new FlatButton(
             padding: EdgeInsets.all(0.0),
             onPressed: () {
