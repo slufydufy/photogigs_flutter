@@ -46,7 +46,7 @@ class PhotoGigsMain extends StatelessWidget {
                     padding: EdgeInsets.only(top: 8.0),
                     child: RaisedButton(
                       child: new Text(
-                        'Post a Job',
+                        'Post Job',
                         style: TextStyle(fontSize: 16.0),
                       ),
                       textColor: Colors.black,
@@ -59,7 +59,7 @@ class PhotoGigsMain extends StatelessWidget {
                     padding: EdgeInsets.only(top: 8.0),
                     child: RaisedButton(
                       child: new Text(
-                        'Find a Job',
+                        'Find Job',
                         style: TextStyle(fontSize: 16.0),
                       ),
                       textColor: Colors.white,

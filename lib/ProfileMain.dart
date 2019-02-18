@@ -18,7 +18,7 @@ class ProfileMain extends StatelessWidget {
                     child: new Image.network(
                       'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2F04c1de9f-808c-41c9-9cc8-deaa6a4603f2?alt=media&token=4fafbfe8-91f8-43b7-9787-f90c1c585a49',
                       width: 100.0,
-                      height: 100.0,
+                      // height: 100.0,
                       fit: BoxFit.cover,
                     ))),
                     new Container(
