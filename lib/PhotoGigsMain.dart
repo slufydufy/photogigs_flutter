@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PhotoGigsMain extends StatelessWidget {
+
+final DocumentReference = Firestore.instance.document("models/AuBh4vnHNq9vYDNBt5SN");
 
   @override
   Widget build(BuildContext context) {
