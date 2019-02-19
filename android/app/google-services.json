@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "970551258803",
+    "firebase_url": "https://photogigs-flutter.firebaseio.com",
+    "project_id": "photogigs-flutter",
+    "storage_bucket": "photogigs-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970551258803:android:932d945d887b93da",
+        "android_client_info": {
+          "package_name": "com.photogigs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970551258803-sdmpd4r856v2q6ufo3m9026u6qc8nfq7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.photogigs",
+            "certificate_hash": "a23ecaad9b0b7c9c93ccd61a0bfd4eec5cd6a04b"
+          }
+        },
+        {
+          "client_id": "970551258803-hvp7s4cpj71pr604k3nu1auot30jmjin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZhr9-LyB8mvkshmnHgU2bKoon9QWSV6M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970551258803-hvp7s4cpj71pr604k3nu1auot30jmjin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
