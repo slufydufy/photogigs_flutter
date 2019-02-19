@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class PhotoGigsMain extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: new AppBar(
         title: new Center(
@@ -11,10 +14,10 @@ class PhotoGigsMain extends StatelessWidget {
         ),
       ),
       body: new ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        
         children: <Widget>[
           new Container(
-            height: 250.0,
+            height: height*0.5,
             padding: EdgeInsets.all(8.0),
             child: new Carousel(
               boxFit: BoxFit.cover,
@@ -92,7 +95,7 @@ class PhotoGigsMain extends StatelessWidget {
               )),
           new Container(
             padding: EdgeInsets.all(8.0),
-            height: 200.0,
+            height: height*0.25,
             child:
             ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -119,7 +122,7 @@ class PhotoGigsMain extends StatelessWidget {
               )),
           new Container(
             padding: EdgeInsets.all(8.0),
-            height: 200.0,
+            height: height*0.25,
             child:
             ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -138,6 +141,7 @@ class PhotoGigsMain extends StatelessWidget {
 class ModelCardPG extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return new Container(
       child: new Column(
         children: <Widget>[
@@ -147,8 +151,8 @@ class ModelCardPG extends StatelessWidget {
             child: new Image.network(
 
 'https://firebasestorage.googleapis.com/v0/b/photogigs-79bd9.appspot.com/o/postsImage%2Fdff4b381-b368-430b-87a4-0c72cdca6627?alt=media&token=0bf171dd-57ed-4a0e-ac33-d22f04f38afa',
-                height: 150.0,
-                width: 150,
+                height: height*0.2,
+                width: height*0.2,
                 fit: BoxFit.cover,),
 
           ),

@@ -45,7 +45,7 @@ class JobModel extends StatelessWidget {
     return new Container(
       // padding: EdgeInsets.only(top: 24.0, bottom: 24.0, left: 16.0, right: 16.0),
       child: new ListView.builder(
-        itemCount: 3,
+        itemCount: 4,
         itemBuilder: (context, i) {
           return JobModelRow();
         },
@@ -58,7 +58,7 @@ class JobModelRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 4.0),
       child: new Card(
           clipBehavior: Clip.antiAlias,
           child: FlatButton(
@@ -75,7 +75,7 @@ class JobModelRow extends StatelessWidget {
                   padding:
                       EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                   child: new Text(
-                    'Caucasian model need for clothing line photo shoot',
+                    'Need red hair model for clothing line photo shoot',
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.greenAccent
@@ -125,8 +125,6 @@ class JobPhotographer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        padding:
-            EdgeInsets.only(top: 24.0, bottom: 24.0, left: 16.0, right: 16.0),
         child: new ListView.builder(
           itemCount: 4,
           itemBuilder: (context, i) {
