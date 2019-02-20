@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class PhotoGigsMain extends StatefulWidget {
   @override
@@ -8,6 +10,28 @@ class PhotoGigsMain extends StatefulWidget {
 }
 
 class PhotoGigsMainState extends State<PhotoGigsMain> {
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _signIn = new GoogleSignIn();
+
+  Future<FirebaseUser> _gSignIn() async {
+    GoogleSignInAccount googleSignInAccount = await _signIn.signIn();
+    GoogleSignInAuthentication gSignAuth = await googleSignInAccount.authentication;
+    AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: gSignAuth.accessToken,
+      idToken: gSignAuth.idToken
+    );
+    FirebaseUser user = await _auth.signInWithCredential (credential);
+    assert(user.displayName != null);
+    print(user.displayName);
+    return user;
+  }
+
+  void _gSignOut() {
+    _signIn.signOut();
+    print('Sign Out');
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -74,6 +98,18 @@ class PhotoGigsMainState extends State<PhotoGigsMain> {
             child: new Container(
               padding: EdgeInsets.only(top: 8.0),
               child: new Text('Post or Find a photography related job Now'),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () => _gSignIn().then((FirebaseUser user) => print(user)).catchError((e) => print(e)) ,
+              child: new Text('GoogleSignIn'),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: _gSignOut,
+              child: new Text('SignOut'),
             ),
           ),
           new Container(

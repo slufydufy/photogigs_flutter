@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'JobsMain.dart';
 import 'ProfileMain.dart';
 import 'PhotoGigsMain.dart';
@@ -15,19 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _gSignIn = new GoogleSignIn();
-
-  Future<FirebaseUser> _signIn() async {
-    GoogleSignInAccount googleSignInAccount = await _gSignIn.signIn();
-    GoogleSignInAuthentication gSignAuth = await googleSignInAccount.authentication;
-
-    FirebaseUser user = await _auth.signInWithCustomToken (
-        
-    );
-
-  }
-
   int i = 0;
   var pages = [
     new PhotoGigsMain(),
@@ -39,8 +24,6 @@ class MyAppState extends State<MyApp> {
   ];
   @override
   Widget build(BuildContext context) {
-
-    // if 
 
     return MaterialApp(
       title: "PhotoGigs",
