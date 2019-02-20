@@ -12,7 +12,7 @@ class ProfileMain extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             new Container(
-                
+                padding: EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
                 child: Card(
                     clipBehavior: Clip.antiAlias,
                     child: new Image.network(
@@ -22,6 +22,7 @@ class ProfileMain extends StatelessWidget {
                       fit: BoxFit.cover,
                     ))),
                     new Container(
+                      padding: EdgeInsets.only(left: 8.0, right: 8.0),
                       child: new Card(
                         child: new Column(
                           children: <Widget>[

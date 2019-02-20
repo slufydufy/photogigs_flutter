@@ -5,9 +5,6 @@ class TimeLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-// StreamBuilder(
-//   stream: FireStore.instance,
-// )
 
         new Scaffold(
       appBar: AppBar(
