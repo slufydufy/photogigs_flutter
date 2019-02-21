@@ -3,6 +3,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'LoginMain.dart';
 
 class PhotoGigsMain extends StatefulWidget {
   @override
@@ -12,7 +13,9 @@ class PhotoGigsMain extends StatefulWidget {
 class PhotoGigsMainState extends State<PhotoGigsMain> {
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _signIn = new GoogleSignIn();
+final GoogleSignIn _signIn = new GoogleSignIn();
+
+
 
   Future<FirebaseUser> _gSignIn() async {
     GoogleSignInAccount googleSignInAccount = await _signIn.signIn();
@@ -22,21 +25,34 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
       idToken: gSignAuth.idToken
     );
     FirebaseUser user = await _auth.signInWithCredential (credential);
-    assert(user.displayName != null);
-    print(user.displayName);
+    // var ref = Firestore.instance.collection('users').document(user.uid);
+    // ref.setData({'uid' :user.uid, 'name' :user.displayName, 'email' :user.email});
     return user;
   }
+
+  
 
   void _gSignOut() {
     _signIn.signOut();
     print('Sign Out');
   }
+  // void _toLoginPage() {
+    
+  // }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-
-    return Scaffold(
+  if (FirebaseAuth.instance.currentUser() == null) {
+    // _toLoginPage;
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => ModelDetail(
+    //               post: post,
+    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginMain()));
+  } else {
+      return Scaffold(
       appBar: new AppBar(
         title: new Text('PhotoGigs'),
       ),
@@ -153,6 +169,8 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
         ],
       ),
     );
+  }
+    
   }
 }
 
