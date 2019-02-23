@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'JobsMain.dart';
 import 'ProfileMain.dart';
-import 'PhotoGigsMain.dart';
+// import 'PhotoGigsMain.dart';
+import 'LoginMain.dart';
 import 'TalentMain.dart';
 import 'QuestMain.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   int i = 0;
   var pages = [
-    new PhotoGigsMain(),
+    new LoginMain(),
     new TalentMain(),
     new JobsMain(),
     new QuestMain(),
