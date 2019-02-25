@@ -20,8 +20,11 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'PhotoGigs',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: LoginMain()
+      home: new RootPage(
+        auth: new Auth(),
+        )
     );
   }
 }

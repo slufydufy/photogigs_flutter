@@ -27,10 +27,10 @@ class RootPageState extends State<RootPage> {
     super.initState();
     widget.auth.currentUser().then((user) {
       setState(() {
-        if (user !=null) {
-          _userId = user.uid;
+        if (user != null) {
+          _userId = user?.uid;
         }
-        _authStatus = user.uid == null ? AuthStatus.notLoggedIn : AuthStatus.loggedIn;
+        _authStatus = user?.uid == null ? AuthStatus.notLoggedIn : AuthStatus.loggedIn;
       });
     });
   }
@@ -76,9 +76,9 @@ class RootPageState extends State<RootPage> {
       case AuthStatus.loggedIn:
       if (_userId.length > 0 && _userId != null) {
         return new HomeMain(
-          userId: _userId,
-          auth: widget.auth,
-          onSignedOut: onSignOut,
+          // userId: _userId,
+          // auth: widget.auth,
+          // onSignedOut: onSignOut,
         );
       } else return _buildWaitingScreen();
       break;

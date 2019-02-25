@@ -3,8 +3,6 @@ import 'auth.dart';
 import 'HomeMain.dart';
 
 class LoginMain extends StatefulWidget {
-
-  
   LoginMain({this.auth, this.onSignIn});
 
   final BaseAuth auth;
@@ -52,7 +50,10 @@ void _validateAndSubmit() async {
         userId = await widget.auth.signUp(_email, _password);
         print('SignIn User: $userId');
       }
-      if (userId.length > 0 && userId !=null) {
+      setState(() {
+        _isLoading = true;
+      });
+      if (userId.length > 0 && userId !=null && _formMode ==FormMode.LOGIN) {
         widget.onSignIn();
       }
       
@@ -69,6 +70,13 @@ void _validateAndSubmit() async {
     }
   }
 }
+
+@override
+  void initState() {
+    _errorMessage = "";
+    _isLoading = false;
+    super.initState();
+  }
 
 void _formSignUp() {
   _formKey.currentState.reset();
@@ -90,6 +98,8 @@ void _formLogin() {
 
   @override
   Widget build(BuildContext context) {
+    _isIos = Theme.of(context).platform == TargetPlatform.iOS;
+
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Login'),
@@ -123,7 +133,7 @@ void _formLogin() {
             _showForm(),
             _showButton(),
             _showTextButton(),
-            // _showError()
+            _showError()
           ],
         ),
       ),
@@ -153,7 +163,7 @@ void _formLogin() {
           maxLines: 1,
           keyboardType: TextInputType.emailAddress,
           validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-          // onSaved: (value) => _email = value,
+          onSaved: (value) => _email = value,
         ),
       ),
       Container(
@@ -163,7 +173,7 @@ void _formLogin() {
           maxLines: 1,
           obscureText: true,
           validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
-          // onSaved: (value) => _password = value,
+          onSaved: (value) => _password = value,
           
         ),
       )
@@ -192,13 +202,13 @@ void _formLogin() {
     );
   }
 
-  // Widget _showError() {
-  //   if (_errorMessage.length > 0 && _errorMessage !=null) {
-  //     return new Text(_errorMessage);
-  //   }
-  //   return Container(
-  //     height: 0.0,
-  //   );
-  // }
+  Widget _showError() {
+    if (_errorMessage.length > 0 && _errorMessage != null) {
+      return new Text(_errorMessage);
+    }
+    return Container(
+      height: 0.0,
+    );
+  }
 
 }

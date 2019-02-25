@@ -32,6 +32,15 @@ class HomeMainState extends State<HomeMain> {
     
   ];
 
+  _signedOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.onSignedOut();
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   void initState() {
     
@@ -42,6 +51,14 @@ class HomeMainState extends State<HomeMain> {
   Widget build(BuildContext context) {
 
     return new Scaffold(
+      appBar: new AppBar(
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text('LogOut'),
+            onPressed: _signedOut,
+          )
+        ],
+      ),
         body: pages[i],
         bottomNavigationBar: new BottomNavigationBar(
             items: [

@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'auth.dart';
 
 class PhotoGigsMain extends StatefulWidget {
+
   @override
   PhotoGigsMainState createState() => PhotoGigsMainState();
 }
 
 class PhotoGigsMainState extends State<PhotoGigsMain> {
-final GoogleSignIn gSignIn = new GoogleSignIn();
-void _signOut() {
-  gSignIn.signOut();
-  print('User Sign Out');
-}
+
 
   @override
   Widget build(BuildContext context) {
@@ -84,19 +82,6 @@ void _signOut() {
               child: new Text('Post or Find a photography related job Now'),
             ),
           ),
-          new Center(
-                child: new Container(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: RaisedButton(
-                      child: new Text(
-                        'Logout',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                      textColor: Colors.white,
-                      color: Colors.blueAccent,
-                      onPressed: _signOut,
-                    )),
-              ),
           new Container(
               padding: EdgeInsets.only(top: 32.0, left: 8.0, right: 8.0),
               child: new Row(

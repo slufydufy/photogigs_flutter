@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
+import 'auth.dart';
 
-class ProfileMain extends StatelessWidget {
+class ProfileMain extends StatefulWidget {
+
+ProfileMain({this.auth, this.onSignedOut});
+
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  
+  @override
+  ProfileMainState createState() => ProfileMainState();
+}
+
+class ProfileMainState extends State<ProfileMain> {
+
+  _signedOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.onSignedOut();
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return new Scaffold(
         appBar: AppBar(
           title: new Text('Profile Main'),
+          actions: <Widget>[
+          new FlatButton(
+            child: new Text('LogOut'),
+            onPressed: _signedOut,
+          )
+        ],
         ),
         body: new Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
